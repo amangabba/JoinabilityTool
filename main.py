@@ -3,17 +3,12 @@ import os
 import pandas as pd
 import functions as f
 
-absolute_path = os.path.dirname(__file__)
-relative_path = "src/lib"
 
-
-source_path = os.path.join(absolute_path, "./data/Students.csv")
-target_path = os.path.join(absolute_path, "./data/BookReviews.csv")
 
 
 def main():
     # (method_name, minimum_limit)
-    list_sim_method = [("Levenshtein", 0.35), ("Jaro", 0.8), ("Semantic", 0.5)]
+    list_sim_method = [("Levenshtein", 0.5), ("Jaro", 0.8), ("Semantic", 0.5)]
     min_join = 0.45  # minimum accepted score for a join
     min_norm_uniq_rows = .95  # minimum percentage of unique rows
     max_norm_missing_values = 0.3
@@ -21,11 +16,14 @@ def main():
     thres_hier_pair_discard = 1
     eval_method = "SortedNeighborhood"
     # eval_method = "Merge"
-    # score_method = 'jaccard'
-    score_method = 'cosine'
+    score_method = 'jaccard'
+    # score_method = 'cosine'
 
-    source_original = pd.read_csv(source_path, encoding='latin-1')
-    target_original = pd.read_csv(target_path, encoding='latin-1')
+    absolute_path = os.path.dirname(__file__)
+    source_path = os.path.join(absolute_path, "./data/LibraryBooks.csv")
+    target_path = os.path.join(absolute_path, "./data/BookReviews.csv")
+    source_original = pd.read_csv(source_path)
+    target_original = pd.read_csv(target_path)
 
 
 
