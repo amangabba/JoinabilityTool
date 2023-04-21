@@ -1,0 +1,62 @@
+ISBN,title,author,publisher,year,genre
+978-0060888696,The Catcher in the Rye,J.D. Salinger,Back Bay Books,2001,Fiction
+978-0060977494,The Bell Jar,Sylvia Plath,Harper Perennial,1963,Novel
+978-0061120084,To Kill a Mockingbird,Harper Lee,Harper Collins,1960,Fiction
+978-0061187084,To Kill a Mockingbird,Harper Lee,Harper Perennial Modern Classics,2006,Fiction
+978-0061992278,Bossypants,Tina Fey,Reagan Arthur Books,2011,Comedy
+978-0062459367,Ready Player One,Ernest Cline,Broadway Books,2011,Science Fiction
+978-0064401880,Island of the Blue Dolphins,Scott O'Dell,HMH Books for Young Readers,1960,Children's Fiction
+978-0-07-352340-8,Time Series Analysis and Its Applications: With R Examples,"Robert H. Shumway, David S. Stoffer",McGraw-Hill Education,2017,Statistics
+978-0131101630,Database Systems: The Complete Book,"Hector Garcia-Molina, Jeffrey D. Ullman, Jennifer Widom",Prentice Hall,2002,Computer Science
+978-0-13-110362-7,Computer Networks,"Andrew S. Tanenbaum, David J. Wetherall",Pearson Education,2011,Computer Science
+978-0-13-235088-4,Introduction to Algorithms,"Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein",MIT Press,2009,Computer Science
+978-0-13-429105-3,The Elements of Statistical Learning:Trevor Hastie,"Robert Tibshirani, Jerome Friedman",Springer,2017,Statistics
+978-0134494166,Computer Systems: A Programmer's Perspective,"Randal E. Bryant, David R. O'Hallaron",Pearson Education,2016,Computer Science
+978-0140278776,1984,George Orwell,Penguin Books,1961,Dystopian Fiction
+978-0140283334,The Red Badge of Courage,Stephen Crane,Penguin Classics,1895,War novel
+978-0141185064,The Great Gatsby,F. Scott Fitzgerald,Penguin Classics,2000,Fiction
+978-0141439587,Pride and Prejudice,Jane Austen,Penguin Classics,2003,Romance
+978-0-201-30967-5,Modern Operating Systems,"Andrew S. Tanenbaum, Herbert Bos",Pearson Education,2014,Computer Science
+978-0201616224,Design Patterns: Elements of Reusable Object-Oriented Software,"Erich Gamma,  Richard Helm,  Ralph Johnson and John Vlissides",Addison-Wesley Professional,1994,Programming
+978-0201617032,Design Patterns: Elements of Reusable Object-Oriented Software,Erich Gamma,Addison-Wesley Professional,1994,Computer Science
+978-0261103571,The Lord of the Rings,J.R.R. Tolkien,Mariner Books,2005,Fantasy
+978-0-262-01503-4,Structure and Interpretation of Computer Programs,"Harold Abelson, Gerald Jay Sussman, Julie Sussman",MIT Press,1996,Computer Science
+978-0-262-53159-0,Probabilistic Graphical Models: Principles and Techniques,"Daphne Koller, Nir Friedman",MIT Press,2009,Machine Learning
+978-0262534208,Deep Learning,"Ian Goodfellow, Yoshua Bengio, Aaron Courville",MIT Press,2016,Computer Science
+978-0316010768,The Name of the Wind,Patrick Rothfuss,DAW Books,2007,Fantasy
+978-0316015844,Ender's Game,Orson Scott Card,Tor Books,1991,Science Fiction
+978-0316327930,The Martian,Andy Weir,Crown Publishing Group,2011,Science Fiction
+978-0321-334785,Clean Code: A Handbook of Agile Software Craftsmanship,Robert C. Martin,Pearson Education,2008,Computer Science
+978-0345391803,The Restaurant at the End of the Universe,Douglas Adams,Del Rey,1980,Science Fiction
+978-0345538376,Fifty Shades of Grey,E.L. James,Vintage Books,2011,Romance
+978-0375724886,The Amazing Adventures of Kavalier & Clay,Michael Chabon,Picador,2000,Historical fiction
+978-0375831003,Eragon,Christopher Paolini,Alfred A. Knopf,2002,Fantasy
+978-0385323062,Holes,"Louis Sachar, Farrar", Straus and Giroux,1998,Children's Fiction
+978-0399501487,Bridge to Terabithia,Katherine Paterson,HarperCollins,1977,Children's Fiction
+978-0439023528,Hunger Games,Suzanne Collins,Scholastic Press,2008,Young Adult Fiction
+978-0439136358,Harry Potter and the Chamber of Secrets,J.K. Rowling,Scholastic,1998,Fantasy
+978-0441172719,The Hitchhiker's Guide to the Galaxy,Douglas Adams,Del Rey,1979,Science Fiction
+978-0441569595,Neuromancer,William Gibson,Ace Books,1984,Science Fiction
+978-0451419439,The Hitchhiker's Guide to the Galaxy,Douglas Adams,Del Rey,1979,Science Fiction
+978-0451524935,1984,George Orwell,Signet Classic,1949,Fiction
+978-0451532151,Fahrenheit 451,Ray Bradbury,Simon & Schuster,2012,Dystopian Fiction
+978-0486280615,The Adventures of Sherlock Holmes, Arthur Conan Doyle,Dover Publications,1892,Mystery
+978-0-521-68496-5,Pattern Recognition and Machine Learning,Christopher M. Bishop,Springer,2006,Machine Learning
+978-0545139700,Diary of a Wimpy Kid,Jeff Kinney,Amulet Books,2007,Children's Fiction
+978-0547928227,The Hobbit,J.R.R. Tolkien,Houghton Mifflin Harcourt,1937,Fantasy
+978-0553380163,Dune,Frank Herbert,Bantam Books,1965,Science fiction
+978-0553588484,The Da Vinci Code,Dan Brown,Anchor Books,2003,Mystery Thriller
+978-0590353427,Harry Potter and the Philosopher's Stone,J.K. Rowling,Bloomsbury,1997,Fantasy
+978-0-596-00755-9,Programming Perl,"Larry Wall, Tom Christiansen, Jon Orwant",O'Reilly Media,2000,Computer Science
+978-0-596-51284-5,JavaScript: The Definitive Guide,David Flanagan,O'Reilly Media,2011,Computer Science
+978-0596517748,The Ruby Programming Language,David Flanagan and Yukihiro Matsumoto,O'Reilly Media,2008,Programming
+978-0671027346,A Walk to Remember,Nicholas Sparks,Grand Central Publishing,1999,Romance
+978-0679777489,Cat's Cradle,Kurt Vonnegut,Dial Press Trade Paperback,1998,Science Fiction
+978-0743273565,American Gods,Neil Gaiman,William Morrow,2001,Fantasy
+978-0743273566,A Clockwork Orange,Anthony Burgess,W. W. Norton & Company,2004,Dystopian Fiction
+978-0804171281,The Girl on the Train,Paula Hawkins,Riverhead Books,2015,Thriller
+978-1-118-29426-1,Hands-On Machine Learning with Scikit-Learn, Keras,O'Reilly Media,2019,Machine Learning
+978-1118983843,Data Science from Scratch: First Principles with Python,Joel Grus,O'Reilly Media,2015,Data Science
+978-1-119-29379-0,Artificial Intelligence with Python,Prateek Joshi,John Wiley & Sons,2017,Computer Science
+978-1401245252,Batman: The Dark Knight Returns,Frank Miller,DC Comics,1986,Graphic Novel
+978-1-4577-1462-6,Computer Vision: Algorithms and Applications,Richard Szeliski,Springer,2011,Computer Vision

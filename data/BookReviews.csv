@@ -1,0 +1,99 @@
+id,text,rating,book,reviewer,date
+1,"This book was great, I really enjoyed it.",4.5,To Kill a Mockingbird,John Smith,01/01/2022
+2,"I thought this book was okay, but not great.",3.2,The Adventures of Sherlock Holmes,Jane Doe,05/01/2022
+3,"Wow, this book was amazing!",5,The Amazing Adventures of Kavalier & Clay,Robert Johnson,10/01/2022
+4,"I couldn't finish this book, it was terrible.",1.5,The Red Badge of Courage,Amy Lee,15/01/2022
+5,"This was a great book, highly recommend!",4.8,The Bell Jar,David Kim,20/01/2022
+6,"A classic science fiction novel, highly recommended.",4,Dune,Emily Chen,25/01/2022
+7,To Kill a Mockingbird is a classic,4.5,To Kill a Mockingbird,John Smith,15/03/2022
+8,"Amazing read, I couldn't put it down!",5,To Kill a Mockingbird,Jane Doe,01/04/2022
+9,1984 is a must-read,4,1984,John Smith,22/03/2022
+10,"American Gods was okay, not my favorite",3,American Gods,Jane Doe,28/02/2022
+11,The Hitchhiker's Guide to the Galaxy is hilarious,4.5,The Hitchhiker's Guide to the Galaxy,Jessica,28/12/2021
+12,This book is hilarious! Highly recommended.,5,The Hitchhiker's Guide to the Galaxy,John Smith,15/03/2022
+13,A classic that everyone should read.,4,1984,Jane Doe,18/03/2022
+14,One of the best books I've ever read.,5,The Lord of the Rings,Bob Johnson,20/03/2022
+15,Great introduction to programming in Ruby.,4,The Ruby Programming Language,Alice Brown,22/03/2022
+16,A must-read for fans of science fiction.,5,Neuromancer,Sam Jones,24/03/2022
+17,A thought-provoking novel about the dangers of technology.,4,Fahrenheit 451,Sara Lee,25/03/2022
+18,A fascinating exploration of human nature.,4,Pride and Prejudice,Tom Green,26/03/2022
+19,A gripping and suspenseful novel.,5,To Kill a Mockingbird,Emily Davis,27/03/2022
+20,Great read!,5,The Great Gatsby,Alice,15/03/2022
+22,Not as good as I expected,3,To Kill a Mockingbird,Bob,18/03/2022
+23,This book changed my life!,5,The Catcher in the Rye,Charlie,22/03/2022
+24,Could not put it down!,4,1984,David,25/03/2022
+25,A must-read for everyone,5,Animal Farm,Emily,28/03/2022
+26,Interesting but too long,3,Moby Dick,Frank,02/04/2022
+27,Not my cup of tea,2,Pride and Prejudice,George,05/04/2022
+31,Loved this book!,5,The Alchemist,Hannah,15/03/2022
+32,Couldn't finish it,2,Fifty Shades of Grey,Isaac,18/03/2022
+33,Would not recommend,2,Twilight,Jake,22/03/2022
+34,Waste of time,1,The Da Vinci Code,Kelly,25/03/2022
+35,Too confusing,3,Cloud Atlas,Liam,28/03/2022
+36,Not worth the hype,2,The Girl with the Dragon Tattoo,Mia,02/04/2022
+37,Boring,2,The Lord of the Rings,Nick,05/04/2022
+41,This is a great book on algorithms!,5,Introduction to Algorithms,John Doe,01/04/2023
+42,I found this book to be very helpful.,4,Cracking the Coding Interview,Jane Smith,28/03/2023
+43,Not very useful for beginners.,2,The C Programming Language,Bob Johnson,30/03/2023
+44,A must-read for any computer science student.,5,Code Complete,Alice Lee,25/03/2023
+45,"Too theoretical, not enough practical examples.",3,Computer Networks,David Kim,02/04/2023
+51,I found this book to be an excellent resource for learning about algorithms in computer science. The explanations are clear and easy to understand.,4.5,Introduction to Algorithms,John Doe,25/03/2023
+52,This is a great book for anyone looking to learn more about database design and management. The author does a good job of explaining the concepts in a clear and concise way.,4,Database Systems: The Complete Book,Jane Smith,27/03/2023
+53,I enjoyed reading this book about computer networking. The examples were practical and the explanations were thorough.,4,Computer Networking: A Top-Down Approach,Joe Johnson,28/03/2023
+54,"As someone who is new to programming, I found this book to be a helpful introduction to Python. The exercises were challenging but not overwhelming, and the author's writing style is engaging.",3.5,"Python Crash Course: A Hands-On,  Project-Based Introduction to Programming",Emily Brown,30/03/2023
+55,This is a comprehensive guide to computer architecture that covers all the major concepts in detail. The author provides clear explanations and plenty of examples to help the reader understand the material.,5,Computer Organization and Design: The Hardware/Software Interface,Mark Jones,01/04/2023
+56," ""I found this book to be a great resource for learning Python programming. It explains the concepts clearly and provides practical examples. Highly recommend!""",5," ""Learning Python"""," ""John Doe""",16/03/2023
+57," ""This book is a must-read for anyone interested in data science. It covers all the essential topics and provides clear explanations. The exercises at the end of each chapter are also very helpful.""",5,Python for Data Analysis," ""Jane Smith""",17/03/2023
+58," ""As someone new to web development,  I found this book to be very helpful. It explains the concepts clearly and provides practical examples. Highly recommend!""",4,HTML and CSS: Design and Build Websites," ""Bob Johnson""",18/03/2023
+59," ""I have been programming in Java for a few years now and I found this book to be a great resource for learning advanced concepts. The examples are well explained and the exercises at the end of each chapter are challenging.""",4,Effective Java," ""Alice Lee""",19/03/2023
+60," ""This book provides a great overview of machine learning algorithms and their applications. The examples are well explained and the code is easy to follow. Highly recommend for anyone interested in machine learning.""",5,Hands-On Machine Learning with Scikit-Learn and TensorFlow," ""David Brown""",20/03/2023
+121," ""I found this book very helpful for my computer science course. The explanations were clear and concise,  and the examples were easy to follow.""",4.5, Data Structures and Algorithms, Jane Smith,15/01/2022
+122," ""I was really impressed with this book! It covered a wide range of topics and provided great examples. I would highly recommend it to anyone studying computer science.""",5, Introduction to Programming, John Doe,20/01/2022
+123," ""This book was a lifesaver for me in my data science course. The explanations were very clear and the examples were helpful. Highly recommend!""",4.8, Python for Data Science, Sarah Lee,25/01/2022
+124," ""I found this book very helpful for learning about machine learning. It provided great explanations and lots of helpful examples. Highly recommend!""",4.5, Machine Learning for Beginners, Alex Johnson,28/01/2022
+125," ""I was really impressed with this book! It covered a lot of ground and was very well-written. Highly recommend for anyone interested in learning more about computer science.""",5, The Foundations of Computer Science, Jane Doe,02/02/2022
+126," ""This book was a great resource for my computer graphics course. The explanations were clear and concise and the examples were helpful. Highly recommend!""",4.7, Computer Graphics Principles and Practice, Peter Parker,05/02/2022
+127," ""I was very impressed with this book! It covered a wide range of topics and was very well-written. I would highly recommend it to anyone studying computer science.""",4.8, Computer Science Illuminated, Emma Thompson,10/02/2022
+128," ""This book was a great resource for my algorithms course. The explanations were clear and easy to follow and the examples were very helpful. Highly recommend!""",4.5, Algorithms, Chris Lee,15/02/2022
+129," ""I found this book very helpful for my web development course. The explanations were clear and the examples were easy to follow. Highly recommend!""",4.3, Web Development with HTML and CSS, Karen Johnson,18/02/2022
+130," ""I was really impressed with this book! It covered a lot of ground and provided great examples. Highly recommend for anyone interested in learning more about computer science.""",4.9, Computer Science Distilled, Tom Smith,23/02/2022
+131," ""This book was a great resource for my computer architecture course. The explanations were clear and concise and the examples were very helpful. Highly recommend!""",4.5, Computer Organization and Design, Emily Davis,28/02/2022
+132," ""I found this book very helpful for my database management course. The explanations were clear and the examples were easy to follow. Highly recommend!""",4.3," Database Systems: Design,  Implementation,   and Management", Mark Thompson,05/03/2022
+133,"""This book was a great resource for my operating systems course. The explanations were clear and easy to follow and the examples were very helpful. Highly recommend!""",4.7, Operating System Concepts, Tom Lee,10/03/2022
+134,"Enjoyed reading this book, it was hilarious!",4,Bossypants,Emma Johnson,10/08/2020
+135,"Great book, couldn't put it down!",5,Ready Player One,Joshua Brown,22/09/2020
+136,"This book was very moving and heartwarming.",4,Island of the Blue Dolphins,Olivia Martinez,12/10/2020
+137,"Comprehensive introduction to time series analysis using R.",4,Time Series Analysis and Its Applications: With R Examples,Emily Wilson,24/11/2020
+138,"Excellent book for anyone interested in statistics and machine learning.",5,The Elements of Statistical Learning:Trevor Hastie,Liam Davis,03/12/2020
+139,"In-depth coverage of computer systems and architecture.",4,Computer Systems: A Programmer's Perspective,Avery Brown,16/01/2021
+140,"A must-read for anyone interested in operating systems.",5,Modern Operating Systems,Mia Garcia,29/02/2021
+141,"A classic book on object-oriented design patterns.",4,Design Patterns: Elements of Reusable Object-Oriented Software,Noah Davis,15/03/2021
+142,"A great reference for anyone working with object-oriented design patterns.",4,Design Patterns: Elements of Reusable Object-Oriented Software,Isabella Wilson,22/04/2021
+143,"A classic book on programming and computer science.",5,Structure and Interpretation of Computer Programs,Ava Garcia,11/05/2021
+144,"A great book on probabilistic graphical models and machine learning.",5,Probabilistic Graphical Models: Principles and Techniques,Ethan Johnson,20/06/2021
+145,"Incredible book on deep learning and neural networks.",5,Deep Learning,Madison Martinez,03/07/2021
+146,"One of the best fantasy novels I've read in a long time.",5,The Name of the Wind,Aiden Davis,19/08/2021
+147,"One of the classic science fiction novels of all time.",4,Ender's Game,Samantha Brown,02/09/2021
+148,"A thrilling and suspenseful story of survival on Mars.",4,The Martian,Isaac Wilson,16/10/2021
+149,"An excellent book on writing clean and maintainable code.",5,Clean Code: A Handbook of Agile Software Craftsmanship,Victoria Garcia,25/11/2021
+150,"A hilarious and thought-provoking book about the end of the universe.",4,The Restaurant at the End of the Universe,Asher Davis,12/12/2021
+151,"A great young adult fantasy novel with memorable characters.",4,Eragon,Luna Martinez,01/01/2022
+152,"A classic book about friendship, imagination, and loss.",4,Bridge to Terabithia,Nathan Brown,20/02/2022
+153,"A thrilling dystopian novel that keeps you on the edge of your seat.",5,Hunger Games,Hannah Wilson,09/03/2022
+154,"A fantastic continuation of the Harry Potter series.",5,Harry Potter and the Chamber of Secrets,Oliver Garcia,28/04/2022
+155,"A comprehensive introduction to machine learning.",5,Pattern Recognition and Machine Learning,Sophia Johnson,17/05/2022
+156,"My son loves this series! He read this book in one sitting and immediately wanted to start the next one.",4,Diary of a Wimpy Kid,Samantha Chen,07/11/2020
+157,"This is a classic adventure story that never gets old. Tolkien's world-building is masterful and the characters are unforgettable.",5,The Hobbit,David Rodriguez,02/01/2021
+158,"I first read this book when I was a child and it still holds up as an excellent piece of storytelling. The magic and wonder of the wizarding world are captured perfectly.",5,Harry Potter and the Philosopher's Stone,Amy Lee,14/02/2021
+159,"As someone who has been programming for many years, I found this book to be an excellent reference for Perl. The examples are clear and the explanations are thorough.",4,Programming Perl,Michael Brown,29/03/2021
+160,"This book is a comprehensive guide to JavaScript. The author covers everything from basic syntax to advanced topics like closures and prototypes.",4,JavaScript: The Definitive Guide,Nicole Williams,22/05/2021
+161,"This is a heartwarming story about love and loss. The characters are well-developed and the setting is beautifully described.",4,A Walk to Remember,Lauren Kim,14/07/2021
+162,"This is one of my all-time favorite books. Vonnegut's wit and humor shine through in this satirical masterpiece.",5,Cat's Cradle,William Lee,30/09/2021
+163,"This is a classic dystopian novel that is still relevant today. Burgess' use of language is masterful and the story is thought-provoking.",5,A Clockwork Orange,Olivia Davis,20/11/2021
+164,"This is a gripping thriller that will keep you on the edge of your seat. The characters are well-drawn and the plot is full of twists and turns.",4,The Girl on the Train,Benjamin Chen,10/01/2022
+165,"This book is an excellent introduction to machine learning with Scikit-Learn. The author provides clear explanations and plenty of examples.",4,Hands-On Machine Learning with Scikit-Learn,Elizabeth Johnson,02/03/2022
+166,"This book is a great resource for anyone interested in learning data science from scratch. The author provides clear explanations and plenty of exercises to reinforce the concepts.",4,Data Science from Scratch: First Principles with Python,Thomas Davis,22/04/2022
+167,"This is an excellent introduction to artificial intelligence with Python. The author provides clear explanations and plenty of examples to help readers understand the concepts.",4,Artificial Intelligence with Python,Katherine Lee,14/06/2022
+168,"This is a classic graphic novel that redefined the superhero genre. The storytelling is top-notch and the artwork is breathtaking.",5,Batman: The Dark Knight Returns,William Rodriguez,06/08/2022
+169,"I absolutely loved this book! The story is so engaging and the characters are so well-developed. It's a must-read for any Harry Potter fan.",5,Harry Potter and the Chamber of Secrets,Emily Johnson,12/08/2020
+170,"As someone with a background in computer science, I found this book to be an excellent introduction to machine learning. The author explains complex concepts in a clear and concise manner.",4,Pattern Recognition and Machine Learning,John Smith,24/09/2020
