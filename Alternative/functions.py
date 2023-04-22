@@ -7,16 +7,92 @@ import pandas as pd
 import math
 
 
-# BEFORE UNIQUE/FOREIGN
-def remove_columns_by_category_mismatch(left, right):
+def get_properties_by_dataframe(df):
+    props_by_column = {}
+    columns_by_prop = {
+        'category': {},
+        'missing': {},
+        'unique': {},
+        'avg_chars': {}
+    }
+    missing_values = df.isna().sum()
+    for col in df.columns:
+        cat = get_column_category(df[col])
+        miss_values = missing_values[col]
+        uniq_values = df[col].nunique()
+        avg_chars = df[col].str.len().dropna().agg(["average"])[0] if cat == 'Text' else None
+        props_by_column[col] = {
+            'category': get_column_category(df[col]),
+            'missing': miss_values,
+            'unique': uniq_values,
+            'avg_chars': avg_chars,
+        }
+        columns_by_prop['category'][col] = cat
+        columns_by_prop['missing'][col] = miss_values
+        columns_by_prop['unique'][col] = uniq_values
+        columns_by_prop['avg_chars'][col] = avg_chars
+    return columns_by_prop, props_by_column
+
+
+def delete_properties_of_column(props, col_names):
+    col_names = col_names if isinstance(col_names, list) else [col_names]
+    for col in col_names:
+        data = props['category'].pop(col)
+        data = props['missing'].pop(col)
+        data = props['unique'].pop(col)
+        data = props['avg_chars'].pop(col)
+    return props
+
+
+def get_column_category(series):
+    """
+    Given a series, it returns the category the series belongs to
+    :param series: Series
+    :return: category (i.e. Boolean, Numerical, Date or Text)
+    """
+    if pd.api.types.is_bool_dtype(series):
+        return 'Boolean'
+    elif pd.api.types.is_numeric_dtype(series):
+        return 'Numerical'
+    else:
+        s_df = pd.to_datetime(series, infer_datetime_format=True, errors='coerce', dayfirst=True)
+        s_mf = pd.to_datetime(series, infer_datetime_format=True, errors='coerce')
+        length = len(s_df)
+        date_vals = max(s_df.apply(lambda x: x == x).sum(), s_mf.apply(lambda x: x == x).sum())
+        if date_vals / length > 0.5:
+            return 'Date'
+        else:
+            return 'Text'
+
+# CHANGED df TO column_dict_with_categories (OK)
+def get_columns_grouped_by_category(column_dict_with_categories):
+    """
+    Group columns by category
+    :param column_dict_with_categories: {'col_1': col_1_cat, 'col_2': col_2_cat}
+    :return: Dict of {category: List of column names}
+    """
+    cats = {}
+    for col_name in column_dict_with_categories:
+        cat = column_dict_with_categories[col_name]
+        if cat in cats.keys():
+            cats[cat].append(col_name)
+        else:
+            cats[cat] = [col_name]
+    return cats
+
+
+# SEARCH SPACE REDUCTION
+
+# ADDED l_cats, r_cats (OK)
+def remove_columns_by_category_mismatch(left, right, l_cats, r_cats):
     """
     The functions takes two dataframes and removes the columns that cannot be matched, based on their datatypes.
     :param left: Left Dataframe
     :param right: Right Dataframe
     :return: (Updated Left, Updated Right, Discarded columns from Left, Discarded columns from Right)
     """
-    lcols_by_cat = get_columns_grouped_by_category(left)
-    rcols_by_cat = get_columns_grouped_by_category(right)
+    lcols_by_cat = get_columns_grouped_by_category(l_cats)
+    rcols_by_cat = get_columns_grouped_by_category(r_cats)
     cats = [x for x in lcols_by_cat.keys()]
     [cats.append(x) for x in rcols_by_cat.keys() if x not in cats]
     left_discard = []
@@ -30,8 +106,8 @@ def remove_columns_by_category_mismatch(left, right):
     new_right_cols = [col for col in right.columns if col not in right_discard]
     return left[new_left_cols], right[new_right_cols], left_discard, right_discard
 
-
-def remove_columns_by_uniqueness(df, min_uniqs=1, min_uniq_ratio=0):
+# ADDED df_uniqs (-)
+def remove_columns_by_uniqueness(df, df_uniqs, min_uniqs=1, min_uniq_ratio=0):
     """
     The functions takes as input a Dataframe and returns the Dataframe without the columns that do not satisfy the uniqueness threshold.
     :param df: Dataframe
@@ -44,8 +120,8 @@ def remove_columns_by_uniqueness(df, min_uniqs=1, min_uniq_ratio=0):
     new_columns = []
     discarded_columns = []
     if threshold > 0:
-        for col in df.columns:
-            if df[col].unique() > threshold:
+        for col in df_uniqs:
+            if df_uniqs[col] > threshold:
                 new_columns.append(col)
             else:
                 discarded_columns.append(col)
@@ -53,50 +129,45 @@ def remove_columns_by_uniqueness(df, min_uniqs=1, min_uniq_ratio=0):
     else:
         return df, []
 
-
-def remove_columns_by_missing_values(df, max_normalized_missing_values=1):
+# ADDED df_missing (OK)
+def remove_columns_by_missing_values(df, df_missing, max_normalized_missing_values=1):
     """
     :param df: Dataframe
     :param max_normalized_missing_values: maximum normalized number of missing values accepted
     :return: a tuple with the new dataframe as the first element and discarded columns as the second one
     """
     tot_rows = len(df)
-    missing_values = df.isna().sum()
     new_columns = []
     discarded_columns = []
-    for index, value in missing_values.items():
-        norm_missing_values = value / tot_rows
+    for col in df_missing:
+        norm_missing_values = df_missing[col] / tot_rows
         if norm_missing_values < max_normalized_missing_values:
-            new_columns.append(index)
+            new_columns.append(col)
         else:
-            discarded_columns.append((index, value))
+            discarded_columns.append((col, norm_missing_values))
     return df[new_columns], discarded_columns
 
-
-# BEFORE ANALYSIS
-def remove_columns_by_length(df, max_average_characters=50):
+# ADDED df_avg_chars (OK)
+def remove_columns_by_length(df, df_avg_chars, max_average_characters=50):
     """
     :param df: Dataframe
     :param max_average_characters: maximum number of average characters per column accepted
     :return: (Sliced Dataframe, discarded columns)
     """
-    df_dtypes = [(index, value.name) for index, value in df.dtypes.items()]
     new_columns = []
     discarded_columns = []
-    for column, datatype in df_dtypes:
-        if datatype == 'object':
-            avg_chars = df[column].str.len().dropna().agg(["average"])[0]
-            if avg_chars < max_average_characters:
-                new_columns.append(column)
+    for col in df_avg_chars:
+        if df_avg_chars[col]:
+            if df_avg_chars[col] < max_average_characters:
+                new_columns.append(col)
             else:
-                discarded_columns.append((column, avg_chars))
+                discarded_columns.append((col, df_avg_chars[col]))
         else:
-            new_columns.append(column)
+            new_columns.append(col)
     return df[new_columns], discarded_columns
 
-
-# BEFORE UNIQUE/FOREIGN
-def get_discardable_pairs_by_jaccard(left, right, min_join_score):
+# CHANGED left TO l_uniqs (-)
+def get_discardable_pairs_by_jaccard(l_uniqs, r_uniqs, min_join_score):
     """
     :param left: Left Dataframe
     :param right: Right Dataframe
@@ -105,14 +176,12 @@ def get_discardable_pairs_by_jaccard(left, right, min_join_score):
     """
     discarded_pairs = []
     if min_join_score > 0:
-        lcols = [(col, left[col].unique()) for col in left.columns]
-        rcols = [(col, right[col].unique()) for col in right.columns]
-        for (lcol, luniq) in lcols:
-            for (rcol, runiq) in rcols:
-                min = min(luniq, runiq)
-                max = max(luniq, runiq)
+        for l_col in l_uniqs:
+            for r_col in r_uniqs:
+                min = min(l_uniqs[l_col], r_uniqs[r_col])
+                max = max(l_uniqs[l_col], r_uniqs[r_col])
                 if min < max * min_join_score:
-                    discarded_pairs.append((lcol, rcol))
+                    discarded_pairs.append((l_col, r_col))
     return discarded_pairs
 
 
@@ -230,9 +299,8 @@ def column_combinations(pair_columns, list_num_elements):
                 res.append(aux)
     return res
 
-
-# TO GET INSTANCE-MATCHABLE COLUMNS
-def get_unique_keys(df, minimum_norm_unique_rows=1, maximum_num_columns=3):
+# ADDED df_cats (OK)
+def get_unique_keys(df, df_cats, minimum_norm_unique_rows=1, maximum_num_columns=3):
     """
     :param maximum_num_columns: maximum number of columns per unique key
     :param df: Dataframe for which to find the unique keys
@@ -249,16 +317,15 @@ def get_unique_keys(df, minimum_norm_unique_rows=1, maximum_num_columns=3):
             if num_unique_rows / num_rows >= minimum_norm_unique_rows:
                 res.append({
                     "number": i + 1,  # number of columns
-                    # "columns": [{"name": x, "type": df.dtypes[x].name} for x in col_names],
-                    'columns': [{'name': x, 'category': get_column_category(df[x])} for x in col_names],
+                    'columns': [{'name': x, 'category': df_cats[x]} for x in col_names],
                     "percentage": num_unique_rows / num_rows
                 })
         i += 1
-
     return res
 
 
-def find_foreign_keys(left_prim_keys, right, keys_table="left"):
+# CHANGED right TO r_cats (OK)
+def find_foreign_keys(left_prim_keys, r_cats, keys_table="left"):
     """
     Given the unique keys of one table, the function returns the matching keys in the other table, based on the category
     :param left_prim_keys: Primary (or unique keys)
@@ -266,7 +333,7 @@ def find_foreign_keys(left_prim_keys, right, keys_table="left"):
     :param keys_table: A string to identify the keys' table
     :return: List of matching pairs
     """
-    r_cols_by_cat = get_columns_grouped_by_category(right)
+    r_cols_by_cat = get_columns_grouped_by_category(r_cats)
     pairs = []
     for p_key in left_prim_keys:
         p_cols_by_cat = {}
@@ -296,8 +363,8 @@ def find_foreign_keys(left_prim_keys, right, keys_table="left"):
     return pairs
 
 
-# TO MEASURE JOINABILITY
-def measure_join_columns(left, right, left_columns, right_columns, minimum_join_score, method="SortedNeighborhood",
+# ADDED l_cats, r_cats (OK)
+def measure_join_columns(left, right, left_columns, right_columns, l_cats, r_cats, minimum_join_score, method="SortedNeighborhood",
                          score_method="jaccard"):
     """
     :param minimum_join_score:
@@ -320,9 +387,8 @@ def measure_join_columns(left, right, left_columns, right_columns, minimum_join_
         if not (set(lc_list).issubset(set(left.columns)) and set(rc_list).issubset(set(right.columns))):
             return 0, 0, 0, "error - wrong column names"
         while same_type_flag and counter < len(lc_list):
-            # if left.dtypes[lc_list[counter]] != right.dtypes[rc_list[counter]]:
-            cat_left = get_column_category(left[lc_list[counter]])
-            cat_right = get_column_category(right[rc_list[counter]])
+            cat_left = l_cats[lc_list[counter]]
+            cat_right = r_cats[rc_list[counter]]
             if cat_left != cat_right:
                 same_type_flag = False
                 message = 'Category mismatch: ' + cat_left + '-' + cat_right
@@ -363,8 +429,8 @@ def measure_join_columns(left, right, left_columns, right_columns, minimum_join_
                     tot_uniq_vals = math.sqrt(len_left * len_right)
                 return common_uniq_vals / tot_uniq_vals, common_uniq_vals, tot_uniq_vals, "Sorted Neighbourhood"
 
-
-def get_useful_columns(left_df, right_df, list_of_join_columns_dict, minimum_join_score, evaluation_method,
+# ADDED l_cats, r_cats (OK)
+def get_useful_columns(left_df, right_df, list_of_join_columns_dict, l_cats, r_cats, minimum_join_score, evaluation_method,
                        score_method='jaccard'):
     """
     :param left_df: Dataframe of table1
@@ -378,7 +444,7 @@ def get_useful_columns(left_df, right_df, list_of_join_columns_dict, minimum_joi
     discard = []
     for columns_dict in list_of_join_columns_dict:
         score, matches, total, description = measure_join_columns(left_df, right_df, columns_dict["left"],
-                                                                  columns_dict["right"], minimum_join_score,
+                                                                  columns_dict["right"], l_cats, r_cats, minimum_join_score,
                                                                   evaluation_method, score_method)
         if score >= minimum_join_score:
             merge.append({
@@ -431,6 +497,30 @@ def measure_join(left, right, left_join_columns, right_join_columns):
 
     return contr_r_perc, contr_l_perc
 
+
+# COUNTER COLUMNS - ADDED cols_by_prop (OK)
+def check_if_column_counter(dataframe, column_name, cols_by_prop, min_uniqueness=0.99, max_miss_incr_values=0.1):
+    """
+    Check if a column is a counter
+    :param dataframe: Dataframe
+    :param column_name: Column name
+    :param min_uniqueness: Minimum uniqueness per counter column
+    :param max_miss_incr_values: Maximum missing incremental values per counter column
+    :return:
+    """
+    if cols_by_prop['category'][column_name] == 'Numerical':
+        total_rows = len(dataframe[column_name])
+        unique_rows = cols_by_prop['unique'][column_name]
+        norm_unique_rows = unique_rows / total_rows
+        if norm_unique_rows < min_uniqueness:
+            return False
+        dataframe.sort_values(column_name, ascending=True, inplace=True)
+        diff_list = dataframe[column_name].diff().dropna().tolist()
+        num_most_freq_elem = count_most_frequent(diff_list)
+        miss_incr = 1 - num_most_freq_elem / len(diff_list)
+        if miss_incr <= max_miss_incr_values:
+            return True
+    return False
 
 # AUXILIARY FUNCTIONS
 def col_pair_in(left_columns, right_columns, pairs_list):
@@ -533,68 +623,6 @@ def show_columns(columns):
               "\tJoin score:", "{:.2f}".format(100 * column['join_score']),
               "(", column['matches'], "/", column['total'], ")", description)
     return
-
-
-def get_columns_grouped_by_category(df):
-    """
-    Group columns by category
-    :param df: Dataframe
-    :return: Dict of {category: List of column names}
-    """
-    cats = {}
-    for col_name in df.columns:
-        cat = get_column_category(df[col_name])
-        if cat in cats.keys():
-            cats[cat].append(col_name)
-        else:
-            cats[cat] = [col_name]
-    return cats
-
-
-def get_column_category(series):
-    """
-    Given a series, it returns the category the series belongs to
-    :param series: Series
-    :return: category (i.e. Boolean, Numerical, Date or Text)
-    """
-    if pd.api.types.is_bool_dtype(series):
-        return 'Boolean'
-    elif pd.api.types.is_numeric_dtype(series):
-        return 'Numerical'
-    else:
-        s_df = pd.to_datetime(series, infer_datetime_format=True, errors='coerce', dayfirst=True)
-        s_mf = pd.to_datetime(series, infer_datetime_format=True, errors='coerce')
-        length = len(s_df)
-        date_vals = max(s_df.apply(lambda x: x == x).sum(), s_mf.apply(lambda x: x == x).sum())
-        if date_vals / length > 0.5:
-            return 'Date'
-        else:
-            return 'Text'
-
-
-def check_if_column_counter(dataframe, column_name, min_uniqueness=0.99, max_miss_incr_values=0.1):
-    """
-    Check if a column is a counter
-    :param dataframe: Dataframe
-    :param column_name: Column name
-    :param min_uniqueness: Minimum uniqueness per counter column
-    :param max_miss_incr_values: Maximum missing incremental values per counter column
-    :return:
-    """
-    col_dtype = dataframe.dtypes[column_name].name
-    if col_dtype == "int64" or col_dtype == "float64":
-        total_rows = len(dataframe[column_name])
-        unique_rows = dataframe[column_name].nunique()
-        norm_unique_rows = unique_rows / total_rows
-        if norm_unique_rows < min_uniqueness:
-            return False
-        dataframe.sort_values(column_name, ascending=True, inplace=True)
-        diff_list = dataframe[column_name].diff().dropna().tolist()
-        num_most_freq_elem = count_most_frequent(diff_list)
-        miss_incr = 1 - num_most_freq_elem / len(diff_list)
-        if miss_incr <= max_miss_incr_values:
-            return True
-    return False
 
 
 def count_most_frequent(lst):
